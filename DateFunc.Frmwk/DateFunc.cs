@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DateFunc.Frmwk
 {
@@ -63,7 +59,7 @@ namespace DateFunc.Frmwk
         }
 
         //-------------------------------------Quarters-------------------------------------------------------------//
-        public static DateRange GetQuarter(DateTime thisDate)
+        public static DateRange GetQuarterRange(DateTime thisDate)
         {
             var result = new DateRange();
             int inMonth, inYear;
@@ -98,44 +94,36 @@ namespace DateFunc.Frmwk
             return result;
         }
 
-        public static DateRange GetQuarter()
+        public static DateRange GetQuarterRange()
         {
-            return GetQuarter(DateTime.Now);
+            return GetQuarterRange(DateTime.Now);
         }
 
-        public static DateRange GetPrevQuarter(DateTime date)
+        public static DateRange GetPrevQuarterRange(DateTime date)
         {
-            int inMonth = date.Month;
-            int inYear = date.Year;
-                inMonth = inMonth - 3;
-                if (inMonth < 1)
-                {
-                    inMonth += 12;
-                    inYear--;
-                }
-            DateTime quaterDate = new DateTime(inYear, inMonth, date.Day);
-            return GetQuarter(quaterDate);
+            DateTime quaterDate = date.AddMonths(-3);
+            return GetQuarterRange(quaterDate);
         }
 
-        public static DateRange GetPrevQuarter()
+        public static DateRange GetPrevQuarterRange()
         {
-            return GetQuarter(DateTime.Now);
+            return GetPrevQuarterRange(DateTime.Now);
         }
 
-        public static DateRange GetQuarter2Date(DateTime date)
+        public static DateRange GetQuarter2DateRange(DateTime date)
         {
-            DateRange range = GetQuarter(date);
+            DateRange range = GetQuarterRange(date);
             range.End = date;
 
             return range;
         }
-        public static DateRange GetQuarter2Date()
+        public static DateRange GetQuarter2DateRange()
         {
-            return GetQuarter2Date(DateTime.Now);
+            return GetQuarter2DateRange(DateTime.Now);
         }
 
         //----------------------------------------Week-----------------------------------------------------------------//
-        public static DateRange GetWeek(DateTime date)
+        public static DateRange GetWeekRange(DateTime date)
         {
             DayOfWeek currentDay = date.DayOfWeek;
             int daysTillCurrentDay = currentDay - DayOfWeek.Sunday;
@@ -148,32 +136,32 @@ namespace DateFunc.Frmwk
             return range;
         }
 
-        public static DateRange GetWeek()
+        public static DateRange GetWeekRange()
         {
-            return GetWeek(DateTime.Now);
+            return GetWeekRange(DateTime.Now);
         }
 
-        public static DateRange GetPrevWeek(DateTime date)
+        public static DateRange GetPrevWeekRange(DateTime date)
         {
-            return GetWeek( date.AddDays(-7));
+            return GetWeekRange(date.AddDays(-7));
         }
 
-        public static DateRange GetPrevWeek()
+        public static DateRange GetPrevWeekRange()
         {
-            return GetPrevWeek(DateTime.Now);
+            return GetPrevWeekRange(DateTime.Now);
         }
 
-        public static DateRange GetWeek2Date(DateTime date)
+        public static DateRange GetWeek2DateRange(DateTime date)
         {
-            DateRange range = GetWeek(date);
+            DateRange range = GetWeekRange(date);
             range.End = date;
 
             return range;
         }
 
-        public static DateRange GetWeek2Date()
+        public static DateRange GetWeek2DateRange()
         {
-            return GetWeek2Date(DateTime.Now);
+            return GetWeek2DateRange(DateTime.Now);
         }
     }
 
@@ -194,4 +182,3 @@ namespace DateFunc.Frmwk
         }
     }
 }
-  
