@@ -163,6 +163,47 @@ namespace DateFunc.Frmwk
         {
             return GetWeek2DateRange(DateTime.Now);
         }
+
+        //-------------------------------------------------------Year---------------------------------------------//
+        public static DateRange GetYearRange(DateTime date)
+        {
+            DateRange range = new DateRange
+            {
+                Start = new DateTime(date.Year, 1, 1),
+                End = new DateTime(date.Year, 12, 31)
+            };
+
+            return range;
+        }
+
+        public static DateRange GetYearRange()
+        {
+            return GetYearRange(DateTime.Now);
+        }
+
+        public static DateRange GetYear2DateRange(DateTime date)
+        {
+            DateRange range = GetYearRange(date);
+            range.End = date;
+
+            return range;
+        }
+
+        public static DateRange GetYear2DateRange()
+        {
+            return GetYear2DateRange(DateTime.Now);
+        }
+
+        public static DateRange GetPrevYearRange(DateTime date)
+        {
+
+            return GetYearRange(date.AddYears(-1));
+        }
+
+        public static DateRange GetPrevYearRange()
+        {
+            return GetPrevYearRange(DateTime.Now);
+        }
     }
 
     public class DateRange
